@@ -1,0 +1,30 @@
+---
+import Icon from "@/components/Icon.astro";
+import { RING } from "@/styles/tokens"
+import Small from "@/components/typography/Small.astro";
+import Large from "@/components/typography/Large.astro";
+import Muted from "@/components/typography/Muted.astro";
+
+interface Props {
+  title: string
+  content: string
+  url: string
+  description: string
+}
+
+const { title, content, url, description } = Astro.props
+---
+<a
+  href={url}
+  class:list={[
+  "flex flex-col space-y-2 pl-8 py-8 w-full",
+  "border backdrop-blur rounded-lg",
+  RING,   
+  "bg-card hover:cursor-pointer hover:bg-muted transition group"
+]}
+>
+    <Small class="text-brand">{title}</Small>
+    <Large>{content}</Large>
+    <Muted >{description}</Muted>
+    <Icon name="Arrow" />
+</a>

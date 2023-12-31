@@ -1,0 +1,41 @@
+---
+import Icon from '@/components/Icon.astro';
+import Label from '@/components/typography/Label.astro';
+
+import { RING } from '@/styles/tokens';
+
+interface Props {
+  name: string
+  url: string
+  icon?: boolean
+}
+
+const currentPath = Astro.url.pathname;
+const { name, url, icon } = Astro.props;
+const isActive = url === "/" ? currentPath === url : currentPath.startsWith(url)
+
+---
+<li>
+  <a 
+    href={url} 
+    class:list={[
+      "block relative transition",
+      "flex flex-col items-center",
+      RING,    
+      {"text-brand dark:text-brand": isActive},
+      {"hover:text-brand dark:hover:text-brand": !isActive},
+    ]}
+  >
+    {icon && <Icon name={name} />}
+    <Label>{name}</Label>
+    {isActive && !icon && (
+      <span 
+        class:list={[
+          "absolute -inset-x-1 -bottom-4 h-px z-0", 
+          "bg-gradient-to-r from-brandSimple/0 via-brandSimple to-brandSimple/0", 
+          "dark:from-brandSimple/0 dark:via-brandSimple dark:to-brandSimple/0",
+        ]}
+      />
+    )}
+  </a>  
+</li>

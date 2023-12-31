@@ -1,0 +1,48 @@
+---
+import SiteLayout from '@/layouts/SiteLayout.astro';
+import PageLayout from '@/layouts/PageLayout.astro';
+import LocalDate from '@/components/blog/LocalDate.astro';
+import Heading from '@/components/typography/Heading.astro';
+import Text from '@/components/typography/Text.astro';
+import Title from '@/components/typography/Title.astro';
+
+import { getCollection } from 'astro:content';
+const blogEntries = (await getCollection('blog')).sort(
+  (a, b) => Date.parse(b.data.publishedDate.toString()) - Date.parse(a.data.publishedDate.toString())
+);;
+---
+<SiteLayout>
+  <PageLayout class="max-w-prose">
+    <Title>Blog</Title>
+
+    <ul class="mt-8 flex-col space-y-6">
+      {blogEntries.map(blogPostEntry => (
+        <li class="w-full group">
+          <a 
+            class="grid grid-rows-2 grid-cols-5 items-baseline"
+            href={`/blog/${blogPostEntry.slug}`}
+          >
+            <div class="ow-span-1 col-span-3">
+              <Heading>{blogPostEntry.data.title}</Heading>
+            </div>
+
+            <div class="row-span-1 col-span-2 text-right">
+              <LocalDate date={blogPostEntry.data.publishedDate} />
+            </div>
+
+            <div class="row-span-1 col-span-3">
+              <Text>{blogPostEntry.data.description}</Text>
+            </div>
+
+            <!--- 
+              <div class="row-span-1 col-span-2 text-right">
+                <NumericText></NumericText>
+              </div>  
+            -->
+            
+          </a>
+        </li>
+      ))}
+    </ul>
+  </PageLayout>
+</SiteLayout>

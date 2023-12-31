@@ -1,0 +1,14 @@
+---
+import NumericText from '@/components/typography/NumericText.astro';
+interface Props {
+  tags: string[]
+  class?: string
+}
+
+const { class: className, tags } = Astro.props 
+---
+<div class={className}>
+  <NumericText >
+    {tags.join(', ')}
+  </NumericText>
+</div>

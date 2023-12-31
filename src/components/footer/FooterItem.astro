@@ -1,0 +1,26 @@
+---
+import { RING } from "@/styles/tokens";
+import Muted from "@/components/typography/Muted.astro";
+
+interface Props {
+  name: string
+  url: string
+}
+
+const currentPath = Astro.url.pathname;
+const { name, url } = Astro.props;
+const isActive = url === "/" ? currentPath === url : currentPath.startsWith(url)
+---
+<li>
+  <a 
+    class:list={[
+      "hover:underline",
+      RING,
+      {"text-brand dark:text-brand": isActive},
+      {"hover:text-brand dark:hover:text-brand": !isActive},   
+    ]}
+    href={url}
+  >
+    <Muted class="text-brand">{name}</Muted>
+  </a>
+</li>

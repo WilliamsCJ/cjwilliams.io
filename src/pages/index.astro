@@ -1,0 +1,49 @@
+---
+import HeadshotPicture from "@/components/HeadshotPicture.astro";
+import FeatureCard from "@/components/cards/FeatureCard.astro"
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import Title from "@/components/typography/Title.astro";
+import Heading from "@/components/typography/Heading.astro";
+import Text from "@/components/typography/Text.astro";
+import Link from "@/components/typography/Link.astro";
+import Bold from "@/components/typography/Bold.astro";
+import { getCollection } from "astro:content";
+
+const latestBlog = (await getCollection('blog')).sort(
+  (a, b) => Date.parse(b.data.publishedDate.toString()) - Date.parse(a.data.publishedDate.toString())
+)[0];
+
+const latestProject = (await getCollection('projects')).sort(
+  (a, b) => Date.parse(b.data.publishedDate.toString()) - Date.parse(a.data.publishedDate.toString())
+)[0];
+---
+<SiteLayout transitions={true} class="flex flex-col">
+    <div class="flex grow min-h-full m-auto min-w-full mb-8">
+      <div class="min-w-full m-auto flex flex-col space-y-8">
+        <div class="flex justify-start space-x-8 items-center">
+          <HeadshotPicture transition:name="logo" transition:animate="initial" class="right-0 rounded-lg size-[200px]"/>
+        </div>
+        <div class="flex flex-col space-y-2">
+          <Title>Hey, I'm <span class="">CJ</span>.</Title>
+          <Heading class="mt-2">Welcome to my <span class="italic">little</span> corner of the internet.</Heading>
+          <Text>I love solving problems with code and I'm passionate about  building software for people.</Text>
+          <Text>I currently work as a <Bold>Forward Deployed Engineer</Bold> at <Link href="https://www.palantir.com">Palantir Technologies</Link>.<br>In my spare time, I'm the <Bold>Head of Technology</Bold> at <Link href="https://www.manatii.co.uk">Manatii</Link>, building an amazing e-commerce experience for the UK's coolest rum brand.</Text>
+        </div>
+
+        <div class="flex justify-between gap-4">
+          <FeatureCard 
+            title="Latest Article" 
+            content={latestBlog.data.title} 
+            url={`/blog/${latestBlog.slug}`} 
+            description={latestBlog.data.description}
+          />
+          <FeatureCard 
+            title="Recent Project" 
+            content={latestProject.data.title}
+            url="/projects"
+            description={latestProject.data.description}
+          />
+        </div>
+      </div>
+    </div>
+</SiteLayout>

@@ -1,0 +1,54 @@
+---
+import DarkModeToggle from "@/components/header/DarkModeToggle.tsx"
+
+import { SITE_NAVIGATION } from "@/consts.tsx";
+import HeaderItem from "@/components/header/HeaderItem.astro";
+import Container from "@/components/containers/Container.astro";
+import HeaderLogo from "@/components/header/HeaderLogo.astro";
+
+const currentPath = Astro.url.pathname;
+const showLogo = currentPath !== "/"
+---
+<header>
+  <!-- Top  -->
+  <Container class="w-full sticky p-4">
+    <div class="flex justify-between items-center">
+      <HeaderLogo transition:animate="initial" transition:name="logo" show={showLogo} />
+      <nav 
+        class:list={[
+          "max-md:hidden",
+          "w-fit rounded-full bg-background/90 px-8 py-4",
+          "border bg-card text-card-foreground shadow-md",
+        ]}
+      >
+        <ul class="flex space-x-8 justify-center">
+          {SITE_NAVIGATION.map(item => (
+            <HeaderItem
+              name={item.name}
+              url={item.url}
+            />
+          ))}
+        </ul>
+      </nav>
+      <DarkModeToggle client:load/>
+    </div>
+  </Container>
+
+  <!-- Bottom -->
+  <nav 
+    class:list={[
+      "h-16 md:hidden fixed bottom-0 rounded-t-xl bg-background/50 backdrop-blur w-screen p-2",
+      "text-primary ring-2 shadow-lg ring-zinc-900/5"
+    ]}
+  >
+    <ul class="flex space-x-4 justify-around">
+      {SITE_NAVIGATION.map(item => (
+        <HeaderItem
+          name={item.name}
+          url={item.url}
+          icon={item.icon}
+        />
+      ))}
+    </ul>
+  </nav>
+</header>

@@ -1,0 +1,26 @@
+---
+import { Image } from 'astro:assets';
+import headshot from '@/images/CJ_Headshot.jpg';
+
+interface Props {
+  show: boolean
+}
+
+const { show } = Astro.props
+---
+<div 
+  class:list={[
+    "flex size-12 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5",
+    "backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10", 
+    {"invisible": !show}
+  ]}
+>
+  <a href="/">
+    <Image 
+      height={100}
+      class="m-auto rounded-full bg-zinc-100 object-cover dark:bg-zinc-800" 
+      src={headshot} 
+      alt="A lovely picture of CJ."
+    />
+  </a>
+</div>

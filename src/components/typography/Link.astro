@@ -1,0 +1,20 @@
+---
+import { RING } from '@/styles/tokens';
+
+interface Props {
+  class?: string
+  href: string
+  underline?:boolean
+}
+
+const { href, class: className, underline } = Astro.props
+---
+<a
+  href={href}
+  class:list={[
+    "hover:underline font-semibold hover:cursor-pointer",
+    {"underline": underline},
+    RING,
+    className
+  ]}
+><slot /></a>

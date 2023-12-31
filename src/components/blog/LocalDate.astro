@@ -1,0 +1,21 @@
+---
+import NumericText from "@/components/typography/NumericText.astro"
+
+interface Props {
+  date: Date
+}
+
+const { date } = Astro.props
+---
+<NumericText>
+  <time datetime={date.toISOString()}>
+    {date.toLocaleDateString(
+      'en-gb', 
+      {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      }
+    )}
+  </time>
+</NumericText>

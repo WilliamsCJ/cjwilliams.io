@@ -1,0 +1,30 @@
+---
+import SiteLayout from '@/layouts/SiteLayout.astro';
+import PageLayout from '@/layouts/PageLayout.astro';
+import Title from '@/components/typography/Title.astro';
+import ProjectCard from '@/components/cards/ProjectCard.astro';
+
+import { getCollection } from 'astro:content';
+const projects = (await getCollection('projects')).sort(
+  (a, b) => Date.parse(b.data.publishedDate.toString()) - Date.parse(a.data.publishedDate.toString())
+);;
+---
+<SiteLayout >
+  <PageLayout class="max-w-prose">
+    <Title>Projects</Title>
+    <div class="my-8 grid grid-cols-1 gap-4">
+      {projects.map(project => (
+        <ProjectCard 
+          title={project.data.title} 
+          description={project.data.description} 
+          url={project.data.link}
+          logo={project.data.logo}
+          article={project.data.article}
+          publishedDate={project.data.publishedDate}
+          source={project.data.source}
+          tags={project.data.tags as string[]}
+        />
+      ))}
+    </div>
+  </PageLayout>
+</SiteLayout>

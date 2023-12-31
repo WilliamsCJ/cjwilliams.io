@@ -1,0 +1,14 @@
+---
+import { HomeIcon, ArrowLongRightIcon, InformationCircleIcon, BookOpenIcon, LightBulbIcon } from '@heroicons/react/24/outline'
+
+interface Props {
+  name: string
+}
+
+const { name } = Astro.props
+---
+{name === 'Home' && <HomeIcon className="size-5"/>}
+{name === 'About' && <InformationCircleIcon className="size-5"/>}
+{name === 'Blog' && <BookOpenIcon className="size-5"/>}
+{name === 'Projects' && <LightBulbIcon className="size-5"/>}
+{name === 'Arrow' && <ArrowLongRightIcon className="size-5 inline"/>}

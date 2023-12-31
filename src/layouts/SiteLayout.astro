@@ -1,0 +1,37 @@
+---
+import BaseHead from '@/components/BaseHead.astro';
+import Header from "@/components/header/Header.astro";
+import Footer from "@/components/footer/Footer.astro";
+
+const { title, description, class: className } = Astro.props
+
+import '@fontsource/dm-mono/300.css';
+import '@fontsource/dm-mono/400.css';
+import '@fontsource/dm-mono/500.css';
+import '@fontsource-variable/dm-sans';
+import Container from '@/components/containers/Container.astro';
+import ScrollIndicator from '@/components/ScrollIndicator';
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <BaseHead title={title} description={description} />
+  </head>
+  <body 
+    class:list={[
+      "bg-background text-primary font-sans overscroll-none", 
+      "no-scrollbar min-h-dvh flex flex-col",
+      className
+    ]}
+  >
+    <ScrollIndicator client:load/>
+    <Header />
+    <main class="grow flex flex-col ">
+      <Container class="flex flex-col grow w-full">
+        <slot />
+      </Container>
+    </main>
+    <Footer />
+  </body>
+</html>

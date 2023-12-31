@@ -1,0 +1,62 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import SiteLayout from '@/layouts/SiteLayout.astro';
+import PageLayout from '@/layouts/PageLayout.astro';
+import HeroImage from '@/components/blog/HeroImage.astro'
+import Prose from '@/components/typography/Prose.astro';
+
+import CenteredContainer from '@/components/containers/CenteredContainer.astro';
+import ShareButton from '@/components/blog/ShareButton';
+
+import Title from '@/components/typography/Title.astro';
+import LocalDate from '@/components/blog/LocalDate.astro';
+import Tags from '@/components/blog/Tags.astro';
+import Leading from '@/components/typography/Leading.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+
+  return posts.map((post) => {
+    return {
+      params: {
+        slug: post.slug,
+      },
+      props: {
+        post,
+      },
+    };
+  });
+}
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+<SiteLayout>
+  <PageLayout>
+    <div class="flex flex-col space-y-2 mx-auto max-w-prose my-8">
+      <Title>{post.data.title}</Title>
+      <Leading>{post.data.description}</Leading>
+      <LocalDate date={post.data.publishedDate}/>
+    </div>
+
+    <!-- Image -->
+    {post.data.heroImage && <HeroImage imagePath={post.data.heroImage} altText=""/>}
+
+    <!-- Body -->
+    <Prose>
+      <Content />
+    </Prose>
+
+    <!-- Share button and tags -->
+    <CenteredContainer class="text-center">
+      <ShareButton client:visible />
+      <Tags class="mt-4" tags={post.data.tags as string[] || []}/>
+    </CenteredContainer>
+    
+  </PageLayout> 
+</SiteLayout>

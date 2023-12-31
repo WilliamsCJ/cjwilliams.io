@@ -1,0 +1,18 @@
+---
+interface Props {
+  class?: string
+  mono?: boolean
+}
+
+const { mono, class: className } = Astro.props
+---
+
+<p 
+  class:list={[
+    "text-sm text-muted-foreground",
+    {"font-mono": mono},
+    className
+  ]}
+>
+  <slot />
+</p>

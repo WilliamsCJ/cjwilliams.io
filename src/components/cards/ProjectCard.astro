@@ -1,0 +1,50 @@
+---
+import NumericText from "@/components/typography/NumericText.astro";
+import Large from "@/components/typography/Large.astro";
+import Muted from "@/components/typography/Muted.astro";
+import { Button } from "@/components/ui/button";
+
+import moment from "moment"
+import { ExternalLinkIcon } from "lucide-react"
+import { Image } from "astro:assets";
+
+interface Props {
+  title: string
+  description: string
+  url: string
+  logo: string
+  publishedDate: Date
+  article: boolean
+  source?: string
+  tags?: string[]
+}
+
+const { title, description, url, logo, publishedDate, article, source, tags } = Astro.props
+---
+<div
+  class:list={[
+  "flex flex-col space-y-2 py-4 px-8 h-full w-full",
+  "border bg-card transition group rounded-xl",
+]}
+>
+    <div class="bg-accent border size-10 flex rounded-full">
+      <Image class="m-auto size-8" alt="hi" height=16 width=16 src={logo}/>
+    </div>
+    <Large>{title}</Large>
+    <Muted>{description}</Muted>
+    <div class="flex space-x-4 pt-2">
+      {article && <Button size="default" variant="brand">More </Button>}
+      {source && 
+        <a href={source}>      
+          <Button size="default" variant="outline">Source <ExternalLinkIcon className="ml-2 size-4"/></Button>
+        </a>
+      }
+      <a href={url}>      
+        <Button size="default" variant="outline">Visit <ExternalLinkIcon className="ml-2 size-4"/></Button>
+      </a>
+    </div>
+    <div class="pt-2 w-full flex justify-between items-center">
+      <NumericText>{moment(publishedDate).fromNow()}</NumericText>
+      {tags && <NumericText>{tags.join(', ')}</NumericText>}
+    </div>
+  </div>

@@ -1,0 +1,17 @@
+---
+import { Image } from 'astro:assets';
+import headshot from '@/images/CJ_Headshot.jpg';
+
+const { class: className } = Astro.props
+---
+<div 
+  class:list={[
+    "rounded-lg border",
+    // "bg-gray-200 rounded-lg shadow-lg backdrop-blur",
+    // "shadow-zinc-800/5 ring-1 ring-zinc-900/5",
+    // "dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 overflow-hidden",
+    className
+  ]}
+>
+  <Image src={headshot} alt="A lovely picture of CJ." class={className} />
+</div>
