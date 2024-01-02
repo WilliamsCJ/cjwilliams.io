@@ -24,6 +24,7 @@
     "@radix-ui/react-slot": "^1.0.2",
     "@sanity/astro": "^2.1.4",
     "@sanity/client": "^6.4.12",
+    "@sentry/astro": "^7.91.0",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
     "astro": "^4.0.8",
