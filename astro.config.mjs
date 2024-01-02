@@ -19,7 +19,7 @@ export default defineConfig({
     sentry({
       dsn: "https://6ee6025b58e5a0cda45da4b80b6163cd@o4506503710703616.ingest.sentry.io/4506503712604160",
       sourceMapsUploadOptions: {
-        project: "javascript-astro",
+        project: "cjwilliams.io",
         authToken: process.env.SENTRY_AUTH_TOKEN,
       },
     }),
@@ -27,9 +27,6 @@ export default defineConfig({
   output: "static",
   adapter: vercel({
     webAnalytics: {
-      enabled: true
-    },
-    speedInsights: {
       enabled: true
     }
   })
