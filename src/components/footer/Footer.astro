@@ -7,19 +7,19 @@ import FooterItem from "@/components/footer/FooterItem.astro";
 <footer class="max-md:pb-16">
   <Container>
     <div class="py-4 flex flex-col space-y-4 justify-between font-medium border-zinc-200 border-t">
-      <div class="flex justify-between">
-        <ul class="flex space-x-4">
+      <div class="flex max-sm:flex-col max-sm:space-y-4 justify-between">
+        <ul class="flex max-sm:flex-col max-sm:space-y-2 sm:space-x-4">
           {SITE_NAVIGATION.map(item => (
             <FooterItem name={item.name} url={item.url} />
           ))}
         </ul>
-        <ul class="flex space-x-4">
+        <ul class="flex max-sm:flex-col max-sm:space-y-2 sm:space-x-4">
           {SITE_SOCIALS.map(item => (
             <FooterItem name={item.name} url={item.url} />
           ))}
         </ul>
       </div>
-      <div class="flex justify-between">
+      <div class="flex max-sm:flex-col max-sm:space-y-2 sm:space-x-4 justify-between">
         <Muted>Built in Battersea</Muted>
         <Muted>© CJ Williams, 2023</Muted>
       </div>
