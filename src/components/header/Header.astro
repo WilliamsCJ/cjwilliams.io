@@ -11,7 +11,7 @@ const showLogo = currentPath !== "/"
 ---
 <header>
   <!-- Top  -->
-  <Container class="w-full sticky p-4">
+  <Container class="w-full sticky p-4 z-40">
     <div class="flex justify-between items-center">
       <HeaderLogo transition:animate="initial" transition:name="logo" show={showLogo} />
       <nav 
@@ -38,7 +38,7 @@ const showLogo = currentPath !== "/"
   <nav 
     class:list={[
       "h-16 md:hidden fixed bottom-0 rounded-t-xl bg-background/50 backdrop-blur w-screen p-2",
-      "text-primary ring-2 shadow-lg ring-zinc-900/5"
+      "text-primary ring-2 shadow-lg ring-zinc-900/5 z-40" 
     ]}
   >
     <ul class="flex space-x-4 justify-around">
