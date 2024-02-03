@@ -30,7 +30,7 @@ const latestProject = (await getCollection('projects')).sort(
           <Text>I currently work as a <Bold>Forward Deployed Engineer</Bold> at <Link href="https://www.palantir.com">Palantir Technologies</Link>.<br>In my spare time, I'm the <Bold>Head of Technology</Bold> at <Link href="https://www.manatii.co.uk">Manatii</Link>, building an amazing e-commerce experience for the UK's coolest rum brand.</Text>
         </div>
 
-        <div class="flex justify-between gap-4">
+        <div class="flex max-sm:flex-col justify-between gap-4">
           <FeatureCard 
             title="Latest Article" 
             content={latestBlog.data.title} 
