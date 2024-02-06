@@ -27,7 +27,7 @@
     "@sentry/astro": "^7.91.0",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
-    "astro": "^4.0.9",
+    "astro": "^4.3.3",
     "class-variance-authority": "^0.7.0",
     "geist": "^1.1.0",
     "lucide-react": "^0.303.0",

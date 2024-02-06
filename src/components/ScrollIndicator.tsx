@@ -19,8 +19,6 @@ const ScrollIndicator = () => {
 
       // update state
       setScroll(scrollPercent);
-
-      console.log(scrollPercent)
     };
     // add event listener
     window.addEventListener("scroll", handler);

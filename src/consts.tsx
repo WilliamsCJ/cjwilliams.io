@@ -11,6 +11,6 @@ export const SITE_NAVIGATION = [
 export const SITE_SOCIALS = [
   {'name': 'LinkedIn', 'url': 'https://www.linkedin.com/in/cjwilliamsdev/'},
   {'name': 'GitHub', 'url': 'https://github.com/WilliamsCJ'},
-  {'name': 'X', 'url': ''}
+  {'name': 'X', 'url': 'https://twitter.com/CJWilliamsDev'}
 ]
 

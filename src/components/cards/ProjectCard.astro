@@ -24,7 +24,7 @@ const { title, description, url, logo, publishedDate, article, source, tags } = 
 <div
   class:list={[
   "flex flex-col space-y-2 py-4 px-8 h-full w-full",
-  "border bg-card transition group rounded-xl",
+  "border bg-card group rounded-xl",
 ]}
 >
     <div class="bg-accent border size-10 flex rounded-full">
@@ -36,7 +36,7 @@ const { title, description, url, logo, publishedDate, article, source, tags } = 
       {article && <Button size="default" variant="brand">More </Button>}
       {source && 
         <a href={source}>      
-          <Button size="default" variant="outline">Source <ExternalLinkIcon className="ml-2 size-4"/></Button>
+          <Button size="default" variant="outline">Source <ExternalLinkIcon className="ml-2 size-4 hover:transition"/></Button>
         </a>
       }
       <a href={url}>      
